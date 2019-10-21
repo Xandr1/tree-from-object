@@ -20,13 +20,13 @@
   </li>
   <li>Деревья
     <ul>
-      <li>Огромные
+      <li>огромные
         <ul>
           <li>секвойя</li>
           <li>дуб</li>
         </ul>
       </li>
-      <li>Цветковые
+      <li>цветковые
         <ul>
           <li>яблоня</li>
           <li>магнолия</li>
@@ -57,9 +57,31 @@
       }
     };
 
-    function createTree(container, data) {
-      /* ваш код */
+  function createList(obj) {
+     if (Object.keys(obj).length === 0) {
+      return;
+       }
+  let ul = document.createElement('ul');
+
+  for (let element in obj) {
+    let li = document.createElement('li');
+    li.textContent = element;
+
+    let child = createList(obj[element]);
+
+    if (child) {
+      li.append(child);
     }
+    ul.append(li);
+  }
+
+  return ul;
+}
+
+
+function createTree(container, data) {
+  container.append(createList(data));
+}
 
     createTree(document.getElementById('tree'), data);
   </script>
